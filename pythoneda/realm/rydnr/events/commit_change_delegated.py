@@ -37,15 +37,15 @@ class CommitChangeDelegated(Event):
 
     def __init__(
         self,
-        folder: str,
+        repositoryFolder: str,
         reconstructedId: str = None,
         reconstructedPreviousEventIds: List[str] = None,
     ):
         """
         Creates a new CommitChangeDelegated instance.
-        :param folder: The cloned repository.
-        :type folder: str
-        :param previousEventIds: The id of previous events, if any.
+        :param repositoryFolder: The cloned repository.
+        :type repositoryFolder: str
+        :param reconstructedId: The id of the event, if it's being reconstructed.
         :type reconstructedId: str
         :param reconstructedPreviousEventIds: The id of the previous events, if an external event is being recostructed.
         :type reconstructedPreviousEventIds: List[str]
@@ -53,14 +53,14 @@ class CommitChangeDelegated(Event):
         super().__init__(
             None, reconstructedId, reconstructedPreviousEventIds
         )
-        self._folder = folder
+        self._repositoryFolder = repositoryFolder
 
     @property
     @primary_key_attribute
-    def folder(self) -> str:
+    def repository_folder(self) -> str:
         """
         Retrieves the folder.
         :return: Such information.
         :rtype: str
         """
-        return self._folder
+        return self._repository_folder
