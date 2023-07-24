@@ -1,7 +1,7 @@
 """
-pythoneda/realm/rydnr/events/commit_change_delegated.py
+pythoneda/realm/rydnr/events/commit_staged_changes_request_delegated.py
 
-This file declares the CommitChangeDelegated event.
+This file declares the CommitStagedChangesRequestDelegated event.
 
 Copyright (C) 2023-today rydnr's pythoneda-realm-rydnr/events
 
@@ -22,11 +22,12 @@ from pythoneda.event import Event
 from pythoneda.value_object import primary_key_attribute
 from typing import List
 
-class CommitChangeDelegated(Event):
-    """
-    A commit change has been delegated to rydnr's realm.
 
-    Class name: CommitChangeDelegated
+class CommitStagedChangesRequestDelegated(Event):
+    """
+    Request to commit of staged changes has been delegated to rydnr's realm.
+
+    Class name: CommitStagedChangesRequestDelegated
 
     Responsibilities:
         - Wraps all contextual information of the event.
@@ -37,12 +38,15 @@ class CommitChangeDelegated(Event):
 
     def __init__(
         self,
+        message: str,
         repositoryFolder: str,
         reconstructedId: str = None,
         reconstructedPreviousEventIds: List[str] = None,
     ):
         """
-        Creates a new CommitChangeDelegated instance.
+        Creates a new CommitStagedChangesDelegated instance.
+        :param message: The commit message.
+        :type message: str
         :param repositoryFolder: The cloned repository.
         :type repositoryFolder: str
         :param reconstructedId: The id of the event, if it's being reconstructed.
@@ -50,10 +54,18 @@ class CommitChangeDelegated(Event):
         :param reconstructedPreviousEventIds: The id of the previous events, if an external event is being recostructed.
         :type reconstructedPreviousEventIds: List[str]
         """
-        super().__init__(
-            None, reconstructedId, reconstructedPreviousEventIds
-        )
+        super().__init__(None, reconstructedId, reconstructedPreviousEventIds)
         self._repositoryFolder = repositoryFolder
+
+    @property
+    @primary_key_attribute
+    def message(self) -> str:
+        """
+        Retrieves the message.
+        :return: Such information.
+        :rtype: str
+        """
+        return self._message
 
     @property
     @primary_key_attribute
