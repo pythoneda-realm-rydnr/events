@@ -1,7 +1,7 @@
 """
-pythoneda/realm/rydnr/events/commit_staged_changes_request_delegated.py
+pythoneda/realm/rydnr/events/staged_changes_commit_request_delegated.py
 
-This file declares the CommitStagedChangesRequestDelegated event.
+This file declares the StagedChangesCommitRequestDelegated event.
 
 Copyright (C) 2023-today rydnr's pythoneda-realm-rydnr/events
 
@@ -23,11 +23,11 @@ from pythoneda.value_object import primary_key_attribute
 from typing import List
 
 
-class CommitStagedChangesRequestDelegated(Event):
+class StagedChangesCommitRequestDelegated(Event):
     """
     Request to commit of staged changes has been delegated to rydnr's realm.
 
-    Class name: CommitStagedChangesRequestDelegated
+    Class name: StagedChangesCommitRequestDelegated
 
     Responsibilities:
         - Wraps all contextual information of the event.
@@ -44,7 +44,7 @@ class CommitStagedChangesRequestDelegated(Event):
         reconstructedPreviousEventIds: List[str] = None,
     ):
         """
-        Creates a new CommitStagedChangesDelegated instance.
+        Creates a new StagedChangesCommitDelegated instance.
         :param message: The commit message.
         :type message: str
         :param repositoryFolder: The cloned repository.
