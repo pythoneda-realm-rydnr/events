@@ -1,7 +1,7 @@
 """
-pythoneda/realm/rydnr/events/staged_changes_commit_request_delegated.py
+pythoneda/realm/rydnr/events/change_staging_code_request_delegated.py
 
-This file declares the StagedChangesCommitRequestDelegated event.
+This file declares the ChangeStagingCodeRequestDelegated event.
 
 Copyright (C) 2023-today rydnr's pythoneda-realm-rydnr/events
 
@@ -18,16 +18,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-from pythoneda.event import Event
-from pythoneda.value_object import primary_key_attribute
+from pythoneda import Event, primary_key_attribute
 from typing import List
 
-
-class StagedChangesCommitRequestDelegated(Event):
+class ChangeStagingCodeRequestDelegated(Event):
     """
-    Request to commit of staged changes has been delegated to rydnr's realm.
+    Delegates the request to get the code needed to stage changes.
 
-    Class name: StagedChangesCommitRequestDelegated
+    Class name: ChangeStagingCodeRequestDelegated
 
     Responsibilities:
         - Wraps all contextual information of the event.
@@ -38,15 +36,12 @@ class StagedChangesCommitRequestDelegated(Event):
 
     def __init__(
         self,
-        message: str,
         repositoryFolder: str,
         reconstructedId: str = None,
         reconstructedPreviousEventIds: List[str] = None,
     ):
         """
-        Creates a new StagedChangesCommitDelegated instance.
-        :param message: The commit message.
-        :type message: str
+        Creates a new ChangeStagingCodeRequestDelegated instance.
         :param repositoryFolder: The cloned repository.
         :type repositoryFolder: str
         :param reconstructedId: The id of the event, if it's being reconstructed.
@@ -55,17 +50,7 @@ class StagedChangesCommitRequestDelegated(Event):
         :type reconstructedPreviousEventIds: List[str]
         """
         super().__init__(None, reconstructedId, reconstructedPreviousEventIds)
-        self._repositoryFolder = repositoryFolder
-
-    @property
-    @primary_key_attribute
-    def message(self) -> str:
-        """
-        Retrieves the message.
-        :return: Such information.
-        :rtype: str
-        """
-        return self._message
+        self._repository_folder = repositoryFolder
 
     @property
     @primary_key_attribute
