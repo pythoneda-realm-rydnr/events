@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 from pythoneda import Event, primary_key_attribute
 from typing import List
 
+
 class ChangeStagingCodeRequestDelegated(Event):
     """
     Delegates the request to get the code needed to stage changes.
@@ -46,7 +47,8 @@ class ChangeStagingCodeRequestDelegated(Event):
         :type repositoryFolder: str
         :param reconstructedId: The id of the event, if it's being reconstructed.
         :type reconstructedId: str
-        :param reconstructedPreviousEventIds: The id of the previous events, if an external event is being recostructed.
+        :param reconstructedPreviousEventIds: The id of the previous events, if an external event
+        is being reconstructed.
         :type reconstructedPreviousEventIds: List[str]
         """
         super().__init__(None, reconstructedId, reconstructedPreviousEventIds)
