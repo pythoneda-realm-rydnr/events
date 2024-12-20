@@ -39,20 +39,19 @@ class ChangeStagingCodeRequestDelegated(Event):
     def __init__(
         self,
         repositoryFolder: str,
+        previousEventIds: List[str] = None,
         reconstructedId: str = None,
-        reconstructedPreviousEventIds: List[str] = None,
     ):
         """
         Creates a new ChangeStagingCodeRequestDelegated instance.
         :param repositoryFolder: The cloned repository.
         :type repositoryFolder: str
+        :param previousEventIds: The id of the previous events.
+        :type previousEventIds: List[str]
         :param reconstructedId: The id of the event, if it's being reconstructed.
         :type reconstructedId: str
-        :param reconstructedPreviousEventIds: The id of the previous events, if an external event
-        is being reconstructed.
-        :type reconstructedPreviousEventIds: List[str]
         """
-        super().__init__(None, reconstructedId, reconstructedPreviousEventIds)
+        super().__init__(previousEventIds, reconstructedId)
         self._repository_folder = repositoryFolder
 
     @property
@@ -64,6 +63,8 @@ class ChangeStagingCodeRequestDelegated(Event):
         :rtype: str
         """
         return self._repository_folder
+
+
 # vim: syntax=python ts=4 sw=4 sts=4 tw=79 sr et
 # Local Variables:
 # mode: python
